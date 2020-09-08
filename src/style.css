@@ -150,3 +150,13 @@ hr {
   margin-top: 15px;
   text-shadow: #ffffff 1px 0 8px;
 }
+small {
+  display: block;
+  margin: 0 auto;
+  width: 700px;
+  padding-top: 5px;
+  color: #353535;
+}
+small a {
+  color: #6db0e3;
+}
