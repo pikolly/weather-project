@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 192 155" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(4.16667,0,0,4.16667,-566.667,-2041.67)">
+        <g id="阴霾">
+            <path id="圆角矩形-60" serif:id="圆角矩形 60" d="M176,525L167,525L167,527L176,527L176,525ZM162,525L142,525L142,527L162,527L162,525ZM181,518L137,518L137,520L181,520L181,518ZM182,511L136,511L136,513L182,513L182,511ZM181,504L137,504L137,506L181,506L181,504ZM178,497L140,497L140,499L178,499L178,497ZM152,491C152,490.448 151.552,490 151,490L145,490C144.448,490 144,490.448 144,491C144,491.552 144.448,492 145,492L151,492C151.552,492 152,491.552 152,491ZM174,490L157,490L157,492L174,492L174,490Z" style="fill:white;"/>
+        </g>
+    </g>
+</svg>

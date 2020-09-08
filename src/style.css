@@ -1,0 +1,152 @@
+body {
+  background: #828282;
+  padding-bottom: 100px;
+}
+div.window {
+  display: block;
+  margin: 0 auto;
+  max-width: 700px;
+  max-height: 500px;
+  margin-top: 40px;
+  border-radius: 25px;
+  border: 1px solid #bdbdbd;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 30px 40px;
+  font-family: "Roboto", sans-serif;
+  background-image: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.2)
+    ),
+    url(https://images.unsplash.com/photo-1534088568595-a066f410bcda);
+  background-size: 700px;
+}
+header {
+  display: flex;
+  margin-top: 10px;
+}
+
+h1 {
+  display: inline-flex;
+  font-size: 94px;
+  font-weight: normal;
+  color: #353535;
+  mix-blend-mode: color-burn;
+}
+
+.main-icon {
+  display: block;
+  width: 35%;
+  mix-blend-mode: color-burn;
+  position: relative;
+  right: 30px;
+  top: 4px;
+}
+h2 {
+  font-size: 24px;
+  display: inline;
+  font-weight: 500;
+  color: #353535;
+  mix-blend-mode: color-burn;
+}
+h3 {
+  font-size: 20px;
+  font-weight: 500;
+  mix-blend-mode: color-burn;
+  text-transform: capitalize;
+}
+h4 {
+  font-size: 16px;
+  font-weight: 500;
+  mix-blend-mode: color-burn;
+}
+h5 {
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 300;
+  mix-blend-mode: color-burn;
+  line-height: 5px;
+}
+
+.active-unit {
+  font-size: 20px;
+  font-weight: 300;
+  color: #353535;
+  mix-blend-mode: color-burn;
+  cursor: pointer;
+}
+.inactive-unit {
+  font-size: 16px;
+  font-weight: 300;
+  opacity: 0.7;
+  color: #353535;
+  mix-blend-mode: hard-light;
+  cursor: pointer;
+}
+.space {
+  display: inline-block;
+  width: 5px;
+}
+img {
+  opacity: 70%;
+}
+
+form {
+  display: inline-flex;
+  float: right;
+  position: relative;
+  bottom: 36px;
+}
+input {
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  opacity: 0.7;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.geo-location {
+  display: inline-flex;
+  border: 1px solid rgb(70, 70, 70);
+  border-radius: 30px;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.2);
+  background-color: rgb(240, 240, 240);
+  opacity: 0.5;
+  position: relative;
+  right: 44px;
+  top: 10px;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: all 250ms ease-in-out;
+}
+
+.geo-location:hover {
+  border: 1px solid #31a2b8;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.3);
+}
+
+hr {
+  position: relative;
+  bottom: 12px;
+}
+.days-info {
+  text-align: center;
+}
+.icon {
+  margin: 0 auto;
+  width: 30%;
+}
+.days {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  text-shadow: #ffffff 1px 0 8px;
+}
+.temp {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 15px;
+  text-shadow: #ffffff 1px 0 8px;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="window">
+        <div class="row">
+          <div class="col">
+            <h2 id="cityName">Tokyo</h2>
+            <header>
+              <h1><span id="mainTemp">28</span></h1>
+              <span class="active-unit" id="cUnit">Cº</span>
+              <span class="spcace"></span>
+              <span class="inactive-unit" id="fUnit">Fº</span>
+              <img src="media/cloudy.svg" alt="" class="main-icon" />
+            </header>
+          </div>
+          <div class="col">
+            <h3>Cloudy</h3>
+            <h4 id="displyDayTime">Thusday 15:00</h4>
+            <h5>
+              Humidity: <span class="space"></span
+              ><strong id="humidity"></strong>%
+            </h5>
+            <br />
+            <h5>
+              Wind Speed: <span class="space"></span
+              ><strong id="wind"></strong>km/h
+            </h5>
+            <br />
+            <h5><span id="highTemp">28</span><span>º 🠡</span></h5>
+            <div class="space"></div>
+            <h5><span id="lowTemp">22</span><span>º 🠣</span></h5>
+          </div>
+          <div class="col">
+            <div class="geo-location" id="geoLocation">
+              <img src="media/location.svg" class="mx-auto d-block" alt="" />
+            </div>
+            <form id="cityForm">
+              <input type="text" id="inputCity" placeholder="change city" />
+              <input type="submit" class="d-none" />
+            </form>
+          </div>
+        </div>
+        <hr />
+        <div class="days-info">
+          <div class="row">
+            <div class="col">
+              <div class="days">Wed</div>
+              <div class="icon"><img src="media/light-rain.svg" alt="" /></div>
+              <div class="temp">24º</div>
+            </div>
+            <div class="col">
+              <div class="days">Thu</div>
+              <div class="icon"><img src="media/tunder.svg" alt="" /></div>
+              <div class="temp">29º</div>
+            </div>
+            <div class="col">
+              <div class="days">Fri</div>
+              <div class="icon"><img src="media/rainy.svg" alt="" /></div>
+              <div class="temp">25º</div>
+            </div>
+            <div class="col">
+              <div class="days">Sat</div>
+              <div class="icon"><img src="media/sun.svg" alt="" /></div>
+              <div class="temp">30º</div>
+            </div>
+            <div class="col">
+              <div class="days">Sun</div>
+              <div class="icon"><img src="media/windy.svg" alt="" /></div>
+              <div class="temp">25º</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="src/index.js"></script>
+</html>
