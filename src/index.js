@@ -11,6 +11,10 @@ let fUnit = document.querySelector("#fUnit");
 let units = "metric";
 let apiKey = "8e4097ceca08f5b66546b3660bdf4d95";
 
+//Get defult city
+let defultApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=${apiKey}&units=${units}#`;
+axios.get(defultApiUrl).then(getWeather);
+
 function getWeather(response) {
   let getTemp = Math.round(response.data.main.temp);
   let getCity = response.data.name;
