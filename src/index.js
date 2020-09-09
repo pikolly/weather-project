@@ -1,5 +1,6 @@
 //Basics
 let cityName = document.querySelector("h2#cityName");
+let mainIcon = document.querySelector("#main-icon");
 let mainTemp = document.querySelector("#mainTemp");
 let sky = document.querySelector("h3");
 let humidity = document.querySelector("#humidity");
@@ -11,6 +12,8 @@ let fUnit = document.querySelector("#fUnit");
 let units = "metric";
 let apiKey = "8e4097ceca08f5b66546b3660bdf4d95";
 
+//icons
+
 //Get defult city
 let defultApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=${apiKey}&units=${units}#`;
 axios.get(defultApiUrl).then(getWeather);
@@ -18,6 +21,7 @@ axios.get(defultApiUrl).then(getWeather);
 function getWeather(response) {
   let getTemp = Math.round(response.data.main.temp);
   let getCity = response.data.name;
+  let getIcon = response.data.weather[0].icon;
   let getStatus = response.data.weather[0].description;
   let getHumidity = response.data.main.humidity;
   let getWind = response.data.wind.speed;
@@ -26,6 +30,7 @@ function getWeather(response) {
 
   cityName.innerHTML = getCity;
   mainTemp.innerHTML = getTemp;
+  mainIcon.innerHTML = `media/${getIcon}.svg`;
   sky.innerHTML = getStatus;
   humidity.innerHTML = getHumidity;
   windSpeed.innerHTML = getWind;
