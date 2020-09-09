@@ -35,7 +35,7 @@ function changeUnitToC(event) {
 cUnit.addEventListener("click", changeUnitToC);
 
 //Get defult city
-let defultApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=${apiKey}&units=${units}#`;
+let defultApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}#`;
 axios.get(defultApiUrl).then(getWeather);
 
 function getWeather(response) {
