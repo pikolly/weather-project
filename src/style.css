@@ -159,4 +159,5 @@ small {
 }
 small a {
   color: #6db0e3;
+  transition: all 250ms ease-in-out;
 }
