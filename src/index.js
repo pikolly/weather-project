@@ -1,6 +1,6 @@
 //Basics
 let cityName = document.querySelector("h2#cityName");
-let mainIcon = document.querySelector("#mainIcon").src;
+let mainIcon = document.querySelector("#mainIcon");
 let mainTemp = document.querySelector("#mainTemp");
 let sky = document.querySelector("h3");
 let humidity = document.querySelector("#humidity");
@@ -30,12 +30,14 @@ function getWeather(response) {
 
   cityName.innerHTML = getCity;
   mainTemp.innerHTML = getTemp;
-  mainIcon.innerHTML = `/media/${getIconCode}.svg`;
+  mainIcon.setAttribute("src", `/media/${getIconCode}.svg`);
   sky.innerHTML = getStatus;
   humidity.innerHTML = getHumidity;
   windSpeed.innerHTML = getWind;
   tempMax.innerHTML = getTempMax;
   tempMin.innerHTML = getTempMin;
+
+  mainIcon.setAttribute("alt", getStatus);
 }
 
 //Get tempeture from Geo-Location
