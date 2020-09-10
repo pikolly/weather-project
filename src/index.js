@@ -2,6 +2,7 @@
 let cityName = document.querySelector("h2#cityName");
 let mainIcon = document.querySelector("#mainIcon");
 let mainTemp = document.querySelector("#mainTemp");
+let weatherImg = document.querySelector("#weatherImg");
 let sky = document.querySelector("h3");
 let humidity = document.querySelector("#humidity");
 let windSpeed = document.querySelector("#wind");
@@ -19,7 +20,7 @@ function changeUnitToF(event) {
   cUnit.classList.replace("active-unit", "inactive-unit");
   fUnit.classList.replace("inactive-unit", "active-unit");
   units = "imperial";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=${apiKey}&units=${units}#`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}#`;
   axios.get(apiUrl).then(getWeather);
 }
 fUnit.addEventListener("click", changeUnitToF);
@@ -29,7 +30,7 @@ function changeUnitToC(event) {
   fUnit.classList.replace("active-unit", "inactive-unit");
   cUnit.classList.replace("inactive-unit", "active-unit");
   units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=tokyo&appid=${apiKey}&units=${units}#`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}#`;
   axios.get(apiUrl).then(getWeather);
 }
 cUnit.addEventListener("click", changeUnitToC);
@@ -50,6 +51,7 @@ function getWeather(response) {
 
   cityName.innerHTML = getCity;
   mainTemp.innerHTML = getTemp;
+
   mainIcon.setAttribute("src", `/media/${getIconCode}.svg`);
   sky.innerHTML = getStatus;
   humidity.innerHTML = getHumidity;
@@ -70,6 +72,26 @@ function getPosition(position) {
   let lon = position.coords.longitude;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(getWeather);
+
+  function changeUnitToF(event) {
+    event.preventDefault();
+    cUnit.classList.replace("active-unit", "inactive-unit");
+    fUnit.classList.replace("inactive-unit", "active-unit");
+    units = "imperial";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(getWeather);
+  }
+  fUnit.addEventListener("click", changeUnitToF);
+
+  function changeUnitToC(event) {
+    event.preventDefault();
+    fUnit.classList.replace("active-unit", "inactive-unit");
+    cUnit.classList.replace("inactive-unit", "active-unit");
+    units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(getWeather);
+  }
+  cUnit.addEventListener("click", changeUnitToC);
 }
 
 let geoLocationButton = document.querySelector("#geoLocation");
