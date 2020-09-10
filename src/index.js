@@ -20,7 +20,7 @@ function changeUnitToF(event) {
   cUnit.classList.replace("active-unit", "inactive-unit");
   fUnit.classList.replace("inactive-unit", "active-unit");
   units = "imperial";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}#`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}#`;
   axios.get(apiUrl).then(getWeather);
 }
 fUnit.addEventListener("click", changeUnitToF);
@@ -45,7 +45,7 @@ function getWeather(response) {
   let getIconCode = response.data.weather[0].icon;
   let getStatus = response.data.weather[0].description;
   let getHumidity = response.data.main.humidity;
-  let getWind = response.data.wind.speed;
+  let getWind = Math.round(response.data.wind.speed);
   let getTempMax = Math.round(response.data.main.temp_max);
   let getTempMin = Math.round(response.data.main.temp_min);
 
