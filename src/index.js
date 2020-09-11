@@ -1,4 +1,6 @@
 //Basics (global variables)
+let apiKey = "8e4097ceca08f5b66546b3660bdf4d95";
+let units = `metric`;
 let cityName = document.querySelector("h2#cityName");
 let mainIcon = document.querySelector("#mainIcon");
 let mainTemp = document.querySelector("#mainTemp");
@@ -13,25 +15,26 @@ let fUnit = document.querySelector("#fUnit");
 let forecastDay = document.querySelector("#forecastDay");
 let forecastIcon = document.querySelector("#forecastIcon");
 let forecastTemp = document.querySelector("#forecastTemp");
-let apiKey = "8e4097ceca08f5b66546b3660bdf4d95";
-let units = `metric`;
 let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
 
 //Get defult city
+
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(getWeather);
-console.log(apiUrl);
 
-//let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=minuly,hourly&appid=${apiKey}&units=${units}`;
-//axios.get(forecastApiUrl).then(getForecast);
-/*function getForecast(response) {
-  console.log(response.data.daily);
-  let forecastDay = ;
-  let forecastIcon = response.data.daily[0].icon ;
-  let forecastTemp = Math.round(response.data.daily[0].main.temp);
-}*/
+apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=minuly,hourly&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(getForecast);
+
+function getForecast(response) {
+  /*
+  let forecastDay = ;*/
+  let getIcon = response.data.daily[0].weather[0].icon;
+  forecastIcon.setAttribute("src", `/media/${getIcon}.svg`);
+  forecastTemp.innerHTML = Math.round(response.data.daily[0].temp.day);
+  //console.log(response.data);
+}
 
 function getWeather(response) {
   cTemp = response.data.main.temp;
@@ -133,6 +136,7 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
 let day = days[now.getDay()];
 
 let year = now.getFullYear();
@@ -152,35 +156,22 @@ let months = [
   "December",
 ];
 let fullMonth = months[now.getMonth()];
-let h4 = document.querySelector("h4#displyDayTime");
+
 if (hour < 10) {
   hour = `0${hour}`;
 }
 if (minuts < 10) {
   minuts = `0${minuts}`;
 }
+let h4 = document.querySelector("h4#displyDayTime");
 h4.innerHTML = `${day} ${hour}:${minuts}`;
 
-//Backup
+let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-/*
-  function changeUnitToF(event) {
-    event.preventDefault();
-    cUnit.classList.replace("active-unit", "inactive-unit");
-    fUnit.classList.replace("inactive-unit", "active-unit");
-    units = "imperial";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(getWeather);
-  }
-  fUnit.addEventListener("click", changeUnitToF);
+let today = new Date();
+for (let i = 0; i < 5; i++) {
+  let nextDay = shortDays[(today.getDay() + 1) % 7];
+  forecastDay.innerHTML = nextDay;
+}
 
-  function changeUnitToC(event) {
-    event.preventDefault();
-    fUnit.classList.replace("active-unit", "inactive-unit");
-    cUnit.classList.replace("inactive-unit", "active-unit");
-    units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(getWeather);
-  }
-  cUnit.addEventListener("click", changeUnitToC);
-  */
+console.log(today);

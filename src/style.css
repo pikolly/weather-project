@@ -175,10 +175,13 @@ hr {
   text-shadow: #ffffff 1px 0 8px;
 }
 .temp {
+  text-align: center;
   font-size: 20px;
   font-weight: 300;
   margin-top: 15px;
   text-shadow: #ffffff 1px 0 8px;
+  position: relative;
+  left: 3px;
 }
 small {
   display: block;
