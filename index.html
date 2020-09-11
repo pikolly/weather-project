@@ -27,14 +27,12 @@
             <header>
               <h1><span id="mainTemp"></span></h1>
               <span class="active-unit" id="cUnit">Cº </span>
-
               <span class="inactive-unit" id="fUnit">Fº </span>
               <img src="#" alt="" class="main-icon d-block" id="mainIcon" />
             </header>
           </div>
           <div class="col">
             <h3></h3>
-
             <h5>
               Humidity: <span class="space"></span
               ><strong id="humidity"></strong>%
@@ -64,9 +62,11 @@
         <div class="days-info">
           <div class="row">
             <div class="col">
-              <div class="days">Wed</div>
-              <div class="icon"><img src="media/10d.svg" alt="" /></div>
-              <div class="temp">24º</div>
+              <div class="days" id="forecastDay">Wed</div>
+              <div class="icon" id="forecastIcon">
+                <img src="media/10d.svg" alt="" />
+              </div>
+              <div class="temp" id="forecastTemp">24º</div>
             </div>
             <div class="col">
               <div class="days">Thu</div>
