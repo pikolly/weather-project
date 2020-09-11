@@ -14,33 +14,15 @@ let forecastDay = document.querySelector("#forecastDay");
 let forecastIcon = document.querySelector("#forecastIcon");
 let forecastTemp = document.querySelector("#forecastTemp");
 let apiKey = "8e4097ceca08f5b66546b3660bdf4d95";
-let units = "metric";
-
-//Change unit
-
-function changeUnitToF(event) {
-  event.preventDefault();
-  cUnit.classList.replace("active-unit", "inactive-unit");
-  fUnit.classList.replace("inactive-unit", "active-unit");
-  units = "imperial";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(getWeather);
-}
-fUnit.addEventListener("click", changeUnitToF);
-
-function changeUnitToC(event) {
-  event.preventDefault();
-  fUnit.classList.replace("active-unit", "inactive-unit");
-  cUnit.classList.replace("inactive-unit", "active-unit");
-  units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(getWeather);
-}
-cUnit.addEventListener("click", changeUnitToC);
+let units = `metric`;
+let cTemp = null;
+let cTempMax = null;
+let cTempMin = null;
 
 //Get defult city
-let defultApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}`;
-axios.get(defultApiUrl).then(getWeather);
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=haifa&appid=${apiKey}&units=${units}`;
+axios.get(apiUrl).then(getWeather);
+console.log(apiUrl);
 
 //let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=minuly,hourly&appid=${apiKey}&units=${units}`;
 //axios.get(forecastApiUrl).then(getForecast);
@@ -52,26 +34,27 @@ axios.get(defultApiUrl).then(getWeather);
 }*/
 
 function getWeather(response) {
-  let getTemp = Math.round(response.data.main.temp);
+  cTemp = response.data.main.temp;
+  cTempMax = response.data.main.temp_max;
+  cTempMin = response.data.main.temp_min;
+  let getTemp = Math.round(cTemp);
+  let getTempMax = Math.round(cTempMax);
+  let getTempMin = Math.round(cTempMin);
   let getCity = response.data.name;
   let getIconCode = response.data.weather[0].icon;
   let getStatus = response.data.weather[0].description;
   let getHumidity = response.data.main.humidity;
   let getWind = Math.round(response.data.wind.speed);
-  let getTempMax = Math.round(response.data.main.temp_max);
-  let getTempMin = Math.round(response.data.main.temp_min);
 
   cityName.innerHTML = getCity;
   mainTemp.innerHTML = getTemp;
-
   mainIcon.setAttribute("src", `/media/${getIconCode}.svg`);
+  mainIcon.setAttribute("alt", getStatus);
   sky.innerHTML = getStatus;
   humidity.innerHTML = getHumidity;
   windSpeed.innerHTML = getWind;
   tempMax.innerHTML = getTempMax;
   tempMin.innerHTML = getTempMin;
-
-  mainIcon.setAttribute("alt", getStatus);
 }
 
 //Get tempeture from Geo-Location
@@ -85,25 +68,8 @@ function getPosition(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(getWeather);
 
-  function changeUnitToF(event) {
-    event.preventDefault();
-    cUnit.classList.replace("active-unit", "inactive-unit");
-    fUnit.classList.replace("inactive-unit", "active-unit");
-    units = "imperial";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(getWeather);
-  }
-  fUnit.addEventListener("click", changeUnitToF);
-
-  function changeUnitToC(event) {
-    event.preventDefault();
-    fUnit.classList.replace("active-unit", "inactive-unit");
-    cUnit.classList.replace("inactive-unit", "active-unit");
-    units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(getWeather);
-  }
-  cUnit.addEventListener("click", changeUnitToC);
+  fUnit.classList.replace("active-unit", "inactive-unit");
+  cUnit.classList.replace("inactive-unit", "active-unit");
 }
 
 let geoLocationButton = document.querySelector("#geoLocation");
@@ -116,29 +82,41 @@ function getCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(getWeather);
 
-  function changeUnitToF(event) {
-    event.preventDefault();
-    cUnit.classList.replace("active-unit", "inactive-unit");
-    fUnit.classList.replace("inactive-unit", "active-unit");
-    units = "imperial";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(getWeather);
-  }
-  fUnit.addEventListener("click", changeUnitToF);
-
-  function changeUnitToC(event) {
-    event.preventDefault();
-    fUnit.classList.replace("active-unit", "inactive-unit");
-    cUnit.classList.replace("inactive-unit", "active-unit");
-    units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(getWeather);
-  }
-  cUnit.addEventListener("click", changeUnitToC);
+  fUnit.classList.replace("active-unit", "inactive-unit");
+  cUnit.classList.replace("inactive-unit", "active-unit");
 }
 
 let cityForm = document.querySelector("#cityForm");
 cityForm.addEventListener("submit", getCity);
+
+//Change unit
+
+function changeUnitToF(event) {
+  event.preventDefault();
+  let fTempMain = (cTemp * 9) / 5 + 32;
+  mainTemp.innerHTML = Math.round(fTempMain);
+
+  let fTempMax = (cTempMax * 9) / 5 + 32;
+  tempMax.innerHTML = Math.round(fTempMax);
+
+  let fTempMin = (cTempMin * 9) / 5 + 32;
+  tempMin.innerHTML = Math.round(fTempMin);
+
+  cUnit.classList.replace("active-unit", "inactive-unit");
+  fUnit.classList.replace("inactive-unit", "active-unit");
+}
+fUnit.addEventListener("click", changeUnitToF);
+
+function changeUnitToC(event) {
+  event.preventDefault();
+  mainTemp.innerHTML = Math.round(cTemp);
+  tempMax.innerHTML = Math.round(cTempMax);
+  tempMin.innerHTML = Math.round(cTempMin);
+
+  fUnit.classList.replace("active-unit", "inactive-unit");
+  cUnit.classList.replace("inactive-unit", "active-unit");
+}
+cUnit.addEventListener("click", changeUnitToC);
 
 //Present day and time
 let now = new Date();
@@ -182,3 +160,27 @@ if (minuts < 10) {
   minuts = `0${minuts}`;
 }
 h4.innerHTML = `${day} ${hour}:${minuts}`;
+
+//Backup
+
+/*
+  function changeUnitToF(event) {
+    event.preventDefault();
+    cUnit.classList.replace("active-unit", "inactive-unit");
+    fUnit.classList.replace("inactive-unit", "active-unit");
+    units = "imperial";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(getWeather);
+  }
+  fUnit.addEventListener("click", changeUnitToF);
+
+  function changeUnitToC(event) {
+    event.preventDefault();
+    fUnit.classList.replace("active-unit", "inactive-unit");
+    cUnit.classList.replace("inactive-unit", "active-unit");
+    units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(getWeather);
+  }
+  cUnit.addEventListener("click", changeUnitToC);
+  */
