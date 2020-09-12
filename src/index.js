@@ -12,7 +12,7 @@ let tempMax = document.querySelector("#highTemp");
 let tempMin = document.querySelector("#lowTemp");
 let cUnit = document.querySelector("#cUnit");
 let fUnit = document.querySelector("#fUnit");
-let forecastDay = document.querySelector("#forecastDay");
+let forecastDay = document.querySelectorAll(".day");
 let forecastIcon = document.querySelector("#forecastIcon");
 let forecastTemp = document.querySelector("#forecastTemp");
 let cTemp = null;
@@ -28,8 +28,7 @@ apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.
 axios.get(apiUrl).then(getForecast);
 
 function getForecast(response) {
-  /*
-  let forecastDay = ;*/
+  console.log(response.data);
   let getIcon = response.data.daily[0].weather[0].icon;
   forecastIcon.setAttribute("src", `/media/${getIcon}.svg`);
   forecastTemp.innerHTML = Math.round(response.data.daily[0].temp.day);
@@ -169,9 +168,10 @@ h4.innerHTML = `${day} ${hour}:${minuts}`;
 let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 let today = new Date();
+
 for (let i = 0; i < 5; i++) {
   let nextDay = shortDays[(today.getDay() + 1) % 7];
-  forecastDay.innerHTML = nextDay;
+  forecastDay[i].innerHTML = nextDay;
 }
 
 console.log(today);
