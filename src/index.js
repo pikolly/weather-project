@@ -12,9 +12,7 @@ let tempMax = document.querySelector("#highTemp");
 let tempMin = document.querySelector("#lowTemp");
 let cUnit = document.querySelector("#cUnit");
 let fUnit = document.querySelector("#fUnit");
-let forecastDay = document.querySelectorAll(".days");
-let forecastIcon = document.querySelectorAll("#forecastIcon");
-let forecastTemp = document.querySelector("#forecastTemp");
+
 let cTemp = null;
 let cTempMax = null;
 let cTempMin = null;
@@ -27,15 +25,18 @@ axios.get(apiUrl).then(getWeather);
 apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=minuly,hourly&appid=${apiKey}&units=${units}`;
 axios.get(apiUrl).then(getForecast);
 
+let forecastDay = document.querySelectorAll(".days");
+let forecastIcon = document.querySelectorAll("#forecastIcon");
+let forecastTemp = document.querySelectorAll("#forecastTemp");
+
 function getForecast(response) {
   let getList = response.data.daily;
-  console.log(getList);
+  //console.log(getList);
   for (let i = 0; i < 5; i++) {
     let list = response.data.daily[i];
+    forecastTemp[i].innerHTML = Math.round(list.temp.day);
     let getForecastIcon = list.weather[0].icon;
-    console.log(getForecastIcon);
-    forecastIcon.setAttribute("src", `/media/${getForecastIcon}.svg`);
-    forecastTemp.innerHTML = Math.round(list.temp.day);
+    forecastIcon[i].setAttribute("src", `/media/${getForecastIcon}.svg`);
   }
 }
 
@@ -51,7 +52,22 @@ function getWeather(response) {
   let getStatus = response.data.weather[0].description;
   let getHumidity = response.data.main.humidity;
   let getWind = Math.round(response.data.wind.speed);
-
+  let getTime = new Date(response.data.dt * 1000);
+  /*
+  let cityMinuts = getTime.getMinutes();
+  let cityHour = getTime.getHours();
+  console.log(cityHour);
+ let cityDay = weekdays[getTime.getDay()];
+  let weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+*/
   cityName.innerHTML = getCity;
   mainTemp.innerHTML = getTemp;
   mainIcon.setAttribute("src", `/media/${getIconCode}.svg`);
@@ -61,6 +77,7 @@ function getWeather(response) {
   windSpeed.innerHTML = getWind;
   tempMax.innerHTML = getTempMax;
   tempMin.innerHTML = getTempMin;
+  //displayTime.innerHTML = `${cityHour}:${cityMinuts}`;
 }
 
 //Get tempeture from Geo-Location
@@ -166,8 +183,8 @@ if (hour < 10) {
 if (minuts < 10) {
   minuts = `0${minuts}`;
 }
-let h4 = document.querySelector("h4#displyDayTime");
-h4.innerHTML = `${day} ${hour}:${minuts}`;
+let h4 = document.querySelector("h4#displyTime");
+//h4.innerHTML = `${day} ${hour}:${minuts}`;
 
 let shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 

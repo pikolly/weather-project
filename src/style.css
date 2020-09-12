@@ -166,7 +166,7 @@ hr {
 }
 .icon {
   margin: 0 auto;
-  width: 30%;
+  width: 40%;
 }
 .days {
   font-size: 20px;
@@ -181,7 +181,6 @@ hr {
   margin-top: 15px;
   text-shadow: #ffffff 1px 0 8px;
   position: relative;
-  left: 3px;
 }
 small {
   display: block;
