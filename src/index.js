@@ -79,7 +79,11 @@ function getWeather(response) {
   windSpeed.innerHTML = getWind;
   tempMax.innerHTML = getTempMax;
   tempMin.innerHTML = getTempMin;
-  bgImage.style.backgroundImage = `url(media/images/${getIconCode}.jpeg);`;
+  bgImage.style.backgroundImage = `linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.2)
+    ),url(media/images/${getIconCode}.jpeg)`;
   //console.log(bgImage.style.backgroundImage);
 
   //displayTime.innerHTML = `${cityHour}:${cityMinuts}`;
