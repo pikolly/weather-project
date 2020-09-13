@@ -72,14 +72,14 @@ function getWeather(response) {
 */
   cityName.innerHTML = getCity;
   mainTemp.innerHTML = getTemp;
-  mainIcon.setAttribute("src", `/media/${getIconCode}.svg`);
+  mainIcon.setAttribute("src", `media/${getIconCode}.svg`);
   mainIcon.setAttribute("alt", getStatus);
   sky.innerHTML = getStatus;
   humidity.innerHTML = getHumidity;
   windSpeed.innerHTML = getWind;
   tempMax.innerHTML = getTempMax;
   tempMin.innerHTML = getTempMin;
-  bgImage.style.backgroundImage = `url(/media/images/${getIconCode}.jpeg);`;
+  bgImage.style.backgroundImage = `url(media/images/${getIconCode}.jpeg);`;
   //console.log(bgImage.style.backgroundImage);
 
   //displayTime.innerHTML = `${cityHour}:${cityMinuts}`;

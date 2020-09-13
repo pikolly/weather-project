@@ -18,7 +18,7 @@ div.window {
       rgba(255, 255, 255, 0.8),
       rgba(255, 255, 255, 0.2)
     ),
-    url(/media/images/04n.jpeg);
+    url(../media/images/04n.jpeg);
   background-size: 700px;
 }
 header {
