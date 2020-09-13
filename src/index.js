@@ -12,6 +12,7 @@ let tempMax = document.querySelector("#highTemp");
 let tempMin = document.querySelector("#lowTemp");
 let cUnit = document.querySelector("#cUnit");
 let fUnit = document.querySelector("#fUnit");
+let bgImage = document.querySelector("#weatherImg");
 
 let cTemp = null;
 let cTempMax = null;
@@ -52,11 +53,12 @@ function getWeather(response) {
   let getStatus = response.data.weather[0].description;
   let getHumidity = response.data.main.humidity;
   let getWind = Math.round(response.data.wind.speed);
-  let getTime = new Date(response.data.dt * 1000);
-  /*
+
+  /*let getTime = new Date(response.data.dt * 1000);
+  
   let cityMinuts = getTime.getMinutes();
   let cityHour = getTime.getHours();
-  console.log(cityHour);
+  
  let cityDay = weekdays[getTime.getDay()];
   let weekdays = [
     "Sunday",
@@ -77,6 +79,9 @@ function getWeather(response) {
   windSpeed.innerHTML = getWind;
   tempMax.innerHTML = getTempMax;
   tempMin.innerHTML = getTempMin;
+  bgImage.style.backgroundImage = `url(/media/images/${getIconCode}.jpeg);`;
+  //console.log(bgImage.style.backgroundImage);
+
   //displayTime.innerHTML = `${cityHour}:${cityMinuts}`;
 }
 
