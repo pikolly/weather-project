@@ -150,9 +150,14 @@ input {
   cursor: pointer;
   transition: all 250ms ease-in-out;
 }
+.geo-location img {
+  position: relative;
+  left: 4px;
+  width: 75%;
+}
 
 .geo-location:hover {
-  border: 1px solid #31a2b8;
+  border: 1px solid #fff700;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.3);
 }
