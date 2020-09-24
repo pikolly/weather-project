@@ -32,12 +32,13 @@ let forecastTemp = document.querySelectorAll("#forecastTemp");
 
 function getForecast(response) {
   let getList = response.data.daily;
-  //console.log(getList);
+
   for (let i = 0; i < 5; i++) {
     let list = response.data.daily[i];
     forecastTemp[i].innerHTML = Math.round(list.temp.day);
     let getForecastIcon = list.weather[0].icon;
-    forecastIcon[i].setAttribute("src", `/media/${getForecastIcon}.svg`);
+    forecastIcon[i].setAttribute("src", `./media/${getForecastIcon}.svg`);
+    console.log(getForecastIcon);
   }
 }
 
