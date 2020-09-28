@@ -1,5 +1,5 @@
 //Basics (global variables)
-let apiKey = "8e4097ceca08f5b66546b3660bdf4d95";
+let apiKey = "651b42268fb8baaefb7c30359a32f85c";
 let units = `metric`;
 let cityName = document.querySelector("h2#cityName");
 let mainIcon = document.querySelector("#mainIcon");
